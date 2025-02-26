@@ -254,6 +254,7 @@ public class ArrayOperations {
             rightRotateArr(arr);
         }
     }
+
     private static  void rightRotateArr(int[] arr)
     {
         int first = arr[arr.length-1];

@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package Crio.dsa.Recursion;
+
 import java.util.Arrays;
-import java.util.Locale;
 
 public class RecursionPractice {
     public static void main(String[] args) {

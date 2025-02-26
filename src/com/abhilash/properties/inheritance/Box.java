@@ -1,6 +1,7 @@
 package com.abhilash.properties.inheritance;
 
 public class Box {
+    int value = 7;
     double l ;
     double w ;
     double h ;
@@ -12,6 +13,10 @@ public class Box {
         this.w = -1;
     }
 
+    public void display()
+    {
+        System.out.println(value);
+    }
     Box(double value){
         this.l = value;
         this.w = value;

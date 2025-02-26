@@ -17,9 +17,28 @@ public class stringPractice {
         //isSubsequence(s,t);
         //buyAndSellStock(prices);
        String s = "barfoothefoobarman"; String[] words = {"foo","bar"};
-       //findSubstring(s,words);
+        System.out.println(capitalise("the quick Brown fox jumps over The lazy dog."));
+//       //findSubstring(s,words);
+//
+//        isValid(s,words,3);
+    }
 
-        isValid(s,words,3);
+    // TODO: Implement this method
+    static String capitalise(String str) {
+        System.out.println(str);
+        if(str.charAt(0) != '.' || str.charAt(0) != ' ') ;
+        char[] chars =  str.toCharArray();
+        System.out.println(chars);
+        for(int i = 1; i < chars.length; i++)
+        {
+            if(chars[i-1] == ' ')
+            {
+                //System.out.println("we are converting" + chars[i]);
+                chars[i] = Character.toUpperCase(chars[i]);
+                System.out.println(chars);
+            }
+        }
+        return new String(chars);
     }
     public static void lengthOfLongestSubstring(String s) {
         if(s.length() == 1) System.out.println("max length is 1.");;
