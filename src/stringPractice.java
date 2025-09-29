@@ -1,8 +1,5 @@
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 //import java.lang.String;
 public class stringPractice {
@@ -16,13 +13,120 @@ public class stringPractice {
         //String s = "axc", t = "ahbgdc";
         //isSubsequence(s,t);
         //buyAndSellStock(prices);
-       String s = "barfoothefoobarman"; String[] words = {"foo","bar"};
-        System.out.println(capitalise("the quick Brown fox jumps over The lazy dog."));
+       //String s = "barfoothefoobarman"; String[] words = {"foo","bar"};
+        //System.out.println(capitalise("the quick Brown fox jumps over The lazy dog."));
 //       //findSubstring(s,words);
 //
 //        isValid(s,words,3);
+//        System.out.println("()[]{} is a valid paranthisis : "+ isValidParanthesis("()[]{}"));
+//        System.out.println( "([)] is a valid paranthisis : "+ isValidParanthesis("([)]"));
+        System.out.println( "([)] is a valid paranthisis : "+ postfixExpression("2 3 1 * + 9 -"));
+        isPrime(15);
     }
 
+    private static void isPrime(int n)
+    {
+        int sq = (int) Math.sqrt(n);
+        for(int i = 2; i <= sq; i++)
+        {
+            if(n%i == 0)
+                System.out.println("not a prime");
+
+        }
+        System.out.println("Is a prime");
+    }
+    private static int calValu(int second, int first, char c)
+    {
+        System.out.println("working with numbers,"+ first + " and "+ second);
+        if(c == '*')
+        {
+            System.out.println("Special char is *");
+            return (first * second);
+        }
+        else if(c == '+')
+        {
+            System.out.println("Special char is +");
+            return (first + second);
+        }
+        else if(c == '-')
+        {
+            System.out.println("Special char is -");
+            return (first-second);
+        }
+        return 0;
+        //return ' ';
+    }
+
+    // TODO: Implement this method
+    static int postfixExpression(String exp) {
+        String[] parts = exp.split(" ");
+        Stack<Integer> stack = new Stack<>();
+        for(String s : parts)
+        {
+            System.out.println(s + "  working on.");
+            if(s.equals("+") ||s.equals("*") ||s.equals("-"))
+            {
+                System.out.println("found character.");
+                //do the operation
+                int first = stack.pop();
+                int second = stack.pop();
+                int value = 0 ;
+                if(s.equals("+")) value = second+first;
+                else if(s.equals("*")) value = second*first;
+                else if(s.equals("-")) value = second-first;
+                stack.push(value);
+            }
+            else{
+                System.out.println("found integer.");
+                stack.push(Integer.parseInt(s));
+            }
+        }
+        return stack.pop();
+    }
+    public static String isValidParanthesis(String s) {
+        if(s.length() == 0) return "true";
+
+        Stack<Character> stack = new Stack<>();
+        for(int i = 0; i < s.length(); i++)
+        {
+            if(isOpeningChar(s.charAt(i)))
+            {
+                stack.push(s.charAt(i));
+            }
+            else
+            {
+                if(!isCrctValidParanthesis(s.charAt(i),stack.pop()))
+                    return "false";
+            }
+        }
+
+        if(!stack.empty()) return "false";
+
+        return "true";
+    }
+
+    private static boolean isCrctValidParanthesis(Character stringC, Character StackC) {
+
+        if(stringC == ')')
+        {
+            return StackC == '(';
+        }
+        else if(stringC == ']')
+        {
+            return StackC == '[';
+        }
+        else if(stringC == '}')
+        {
+            return StackC == '{' ;
+        }
+        System.out.println("Errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        return false;
+    }
+
+    private static boolean isOpeningChar(Character c)
+    {
+        return c == '('|| c== '['|| c == '{';
+    }
     // TODO: Implement this method
     static String capitalise(String str) {
         System.out.println(str);

@@ -6,6 +6,8 @@ package Crio.dsa.Recursion;
 //Do some work
 //assign tiny task forward
 
+import java.util.List;
+
 public class recursion {
     private static int nthFibonacciNumber(int n){
         int times = 0;
@@ -92,5 +94,19 @@ public class recursion {
         }
         if(pow % 2 == 0) return  powerOfOpti(val,pow/2) * powerOfOpti(val,pow/2);
         else return powerOfOpti(val,pow/2)*powerOfOpti(val,pow/2)* val;
+    }
+
+    public static void printSequences(int index, List<Integer> list, int[] arr)
+    {
+        if(index == arr.length)
+        {
+            System.out.println("We are reached end.");
+            System.out.println(list);
+            return;
+        }
+        list.add(arr[index]);
+        printSequences(index+1,list,arr);
+        list.remove(list.remove(list.size()-1));
+        printSequences(index+1,list,arr);
     }
 }

@@ -1,6 +1,7 @@
 package Crio.dsa;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.Stack;
 
 public class stringsClass {
     public static void main(String[] args) {
@@ -39,9 +40,44 @@ public class stringsClass {
         //reverseWordsOfString();
         //System.out.println(lengthOfLongestSubstring("abcabcbb"));//"tmmzuxt"));
         //System.out.println(lengthOfLongestSubstring("tmmzuxt"));//"tmmzuxt"));
-        System.out.println(areOccurrencesEqual("mmmccmcccccmcccccmmmcmccmmccccmmmcmmcmcmcmcmmmmmmmmmcccmmcmmmcmmcmcmcmmmcmmmcmmccccmcmccmmcmccmmmcmmccccmcmmccmcmmcccmmcmmcmmcmccmmccmcmmcmmccmmccmcccmmcccmmcccccmcmmmmcmccmmmmmmcmmccmccmmcccccccccmcccmmmccmmccccmmcmcmcmcmmcmmcmcmcmccccmmcccmmmccmmcmmmcmmmcmccccmcmcccmmccmm"));
+        //System.out.println(regexPractice(););
+        //System.out.println(areOccurrencesEqual("mmmccmcccccmcccccmmmcmccmmccccmmmcmmcmcmcmcmmmmmmmmmcccmmcmmmcmmcmcmcmmmcmmmcmmccccmcmccmmcmccmmmcmmccccmcmmccmcmmcccmmcmmcmmcmccmmccmcmmcmmccmmccmcccmmcccmmcccccmcmmmmcmccmmmmmmcmmccmccmmcccccccccmcccmmmccmmccccmmcmcmcmcmmcmmcmcmcmccccmmcccmmmccmmcmmmcmmmcmccccmcmcccmmccmm"));
+        System.out.println("Longest length is " + longestValidParentheses("()(()(())"));
     }
-
+    static int longestValidParentheses(String str){
+        Stack<Character> stack = new Stack<>();
+        int ans = 0;
+        int currLength = 0;
+        for(char ch : str.toCharArray())
+        {
+            if(ch=='(')
+            {
+                stack.push(ch);
+                currLength += 1;
+            }
+            else
+            {
+                if(!stack.empty())
+                {
+                    stack.pop();
+                    currLength += 1;
+                }
+                else
+                {
+                    ans = Math.max(currLength, ans);
+                    stack.clear();
+                }
+            }
+            ans = Math.max(currLength, ans);
+            //currLength = 0;
+        }
+        return ans;
+    }
+    public static void regexPractice(String s)
+    {
+        String parts[] = s.split("a+");
+        System.out.println(parts.toString());
+    }
     public static boolean areOccurrencesEqual(String s) {
         if(s.length() == 1) return true;
         HashMap<Character,Integer> map = new HashMap<Character,Integer>();

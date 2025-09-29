@@ -38,8 +38,81 @@ public class ArrayOperations {
 //        int n = 5, m = 5;
 //        findUnion(arr1,arr2,n,m);
         //searchInRotatedSortedArray(arr,0);
+        //threeSum(new int[]{2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10});
+        //suffixArray(new int[]{1,2,3,4});
+        generateAllSubArrays(index);
     }
 
+    private static void generateAllSubArrays(int[] arr)
+    {
+        /////////n3
+        int max = Integer.MIN_VALUE;
+        for( int i = 0; i< arr.length; i++)
+        {
+            //System.out.print("_");
+            for(int j = i; j < arr.length; j++)
+            {
+                String ans = "[";
+                int product = 1;
+
+                for(int k = i; k <=j; k++)
+                {
+                    ans += arr[k]+",";
+                    product *= arr[k];
+                    max = Math.max(max, product);
+                }
+                ans = ans.substring(0,ans.length()-1);
+                ans += "]";
+                ans+= ("product=> " + product + " MaxProduct => "+ max);
+
+                System.out.println(ans);
+            }
+        }
+    }
+    private static void suffixArray(int[] nums)
+    {
+        int s = 1;
+        int[] sArr = new int[nums.length];
+        sArr[nums.length-1] = 1;
+        for(int i = nums.length-1; i>0 ; i--)
+        {
+            System.out.println( "suffix value untill now is "+ s);
+            s *= nums[i];
+            System.out.println( "suffix value afterIncrease is "+ s);
+            sArr[i-1] = s;
+        }
+    }
+    public static List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i = 0; i < nums.length-3; i++)
+        {
+            if(i != 0 && nums[i-1]==nums[i]) continue;
+            int l = i+1, r = nums.length-1, target = 0-(nums[i]);
+            while(l<r)
+            {
+                if(nums[l]+nums[r] == target){
+                    ArrayList<Integer> arr = new ArrayList<>();
+                    arr.add(nums[i]);
+                    arr.add(nums[l]);
+                    arr.add(nums[r]);
+                    ans.add(arr);
+                    System.out.println(nums[i]+","+nums[l]+","+nums[r]);
+                    l++;
+                    r--;
+                }
+                else if(nums[l]+nums[r] < target)
+                {
+                    l++;
+                }
+                else
+                {
+                    r--;
+                }
+            }
+        }
+        return ans;
+    }
 
     static void createTargetArray(int[] nums, int[] index) {
         ArrayList<Integer> target = new ArrayList<>();
