@@ -49,7 +49,6 @@ public class LL {
 
         newNode.next = newNode.next.next;
 
-
     }
 
     public void insertFirst(int val)
@@ -64,6 +63,20 @@ public class LL {
         }
         size++;
     }
+    
+    public void insertAtFirstPosition(int val)
+    {
+        Node newNode = new Node(val);
+        newNode.next = head;
+        head = newNode;
+
+        if(tail == null)
+        {
+            tail = newNode;
+        }
+
+        size++;
+    }
     private class Node
     {
         int value;
@@ -74,6 +87,20 @@ public class LL {
         }
 
         public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    private class LLNode
+    {
+        int value;
+        Node next;
+
+        public LLNode(int value) {this.value = value;}
+
+        public LLNode(int value, Node next)
+        {
             this.value = value;
             this.next = next;
         }

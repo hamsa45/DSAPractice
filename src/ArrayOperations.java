@@ -39,8 +39,9 @@ public class ArrayOperations {
 //        findUnion(arr1,arr2,n,m);
         //searchInRotatedSortedArray(arr,0);
         //threeSum(new int[]{2,-3,0,-2,-5,-5,-4,1,2,-2,2,0,2,-4,5,5,-10});
-        //suffixArray(new int[]{1,2,3,4});
-        generateAllSubArrays(index);
+        suffixArray(new int[]{1,2,3,4});
+        //generateAllSubArrays(index);
+        printArrayElements(new int[]{4,56,24,59,67,100});
     }
 
     private static void generateAllSubArrays(int[] arr)
@@ -69,19 +70,34 @@ public class ArrayOperations {
             }
         }
     }
-    private static void suffixArray(int[] nums)
+
+    private static void printArrayElements(int[] nums)
     {
-        int s = 1;
-        int[] sArr = new int[nums.length];
-        sArr[nums.length-1] = 1;
-        for(int i = nums.length-1; i>0 ; i--)
+        for(int i : nums)
         {
-            System.out.println( "suffix value untill now is "+ s);
-            s *= nums[i];
-            System.out.println( "suffix value afterIncrease is "+ s);
-            sArr[i-1] = s;
+            System.out.println(i);
         }
     }
+
+    private static void suffixArray(int[] nums)
+    {
+        //int s = 1;
+        int n = nums.length;
+        int[] sArr = new int[n];
+        sArr[n-1] = nums[n-1];
+        for(int i = n-2; i>=0 ; i--)
+        {
+            sArr[i] = nums[i] + sArr[i+1];
+        }
+
+        for(int i = 0; i<n; i++)
+        {
+            System.out.print(sArr[i]+", ");
+        }
+
+        System.out.println(sArr.toString());
+    }
+
     public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<>();

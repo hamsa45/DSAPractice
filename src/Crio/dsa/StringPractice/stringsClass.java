@@ -1,4 +1,4 @@
-package Crio.dsa;
+package Crio.dsa.StringPractice;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Stack;
@@ -6,7 +6,7 @@ import java.util.Stack;
 public class stringsClass {
     public static void main(String[] args) {
         //Different ways to initialize strings
-        //ways_to_create_string();
+        ways_to_create_string();
 
         //practice charAt() method
 //        char[] cArr = {'a','b', 'c','d','e','f','h'};
@@ -35,14 +35,35 @@ public class stringsClass {
         //test();
         //intToRoman(47856);
         //giveAllSubStrings(str_);
-        int val = 3;
+        //int val = 3;
         //System.out.println(String.valueOf(val));
         //reverseWordsOfString();
         //System.out.println(lengthOfLongestSubstring("abcabcbb"));//"tmmzuxt"));
         //System.out.println(lengthOfLongestSubstring("tmmzuxt"));//"tmmzuxt"));
         //System.out.println(regexPractice(););
         //System.out.println(areOccurrencesEqual("mmmccmcccccmcccccmmmcmccmmccccmmmcmmcmcmcmcmmmmmmmmmcccmmcmmmcmmcmcmcmmmcmmmcmmccccmcmccmmcmccmmmcmmccccmcmmccmcmmcccmmcmmcmmcmccmmccmcmmcmmccmmccmcccmmcccmmcccccmcmmmmcmccmmmmmmcmmccmccmmcccccccccmcccmmmccmmccccmmcmcmcmcmmcmmcmcmcmccccmmcccmmmccmmcmmmcmmmcmccccmcmcccmmccmm"));
-        System.out.println("Longest length is " + longestValidParentheses("()(()(())"));
+        //System.out.println("Longest length is " + longestValidParentheses("()(()(())"));
+        literalAndObjectInitialization();
+    }
+
+    //string memory and initialization
+    static void literalAndObjectInitialization()
+    {
+        String literal1 = "Abhi";
+        String literal2 = "Abhi";
+
+        String str1 = new String("Abhi");
+        String str2 = new String("Abhi");
+
+        System.out.print("hash of literla1  :");
+        System.out.println(literal1==literal2);
+        System.out.print("hash of literla2  :");
+        System.out.println(literal2.hashCode());
+
+        System.out.print("hash of str1 object  :");
+        System.out.println(str1==str2);
+        System.out.print("hash of str2 object  :");
+        System.out.println(str2.hashCode());
     }
     static int longestValidParentheses(String str){
         Stack<Character> stack = new Stack<>();
@@ -432,7 +453,14 @@ public class stringsClass {
 
         //Nowwww we are going to create the dataStructure String using the literal method third most important method
         myName = "abhilash Using Literal.";
-        System.out.println(myName+ "* is the complete name string.");
+        System.out.println(myName+ "* created using Literal and stored in string constant pool.");
 
+        String myName2 = "abhilash Using Literal.";
+        if(myName2 == myName)
+            System.out.println("No new string is created, used the exising string object from SCPool.");
+        else {
+            System.out.println("New object is created, did not reuse existing object from SCPool");
+        }
+        
     }
 }
